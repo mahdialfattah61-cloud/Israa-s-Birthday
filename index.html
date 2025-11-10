@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Israa!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px #000;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #fff;
+            text-shadow: 1px 1px #000;
+        }
+
+        .cake {
+            width: 150px;
+            height: 100px;
+            background: #ff6b6b;
+            border-radius: 0 0 20px 20px;
+            margin: 30px auto;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cake:hover {
+            transform: scale(1.1);
+        }
+
+        .frosting {
+            width: 100%;
+            height: 30px;
+            background: #fff;
+            position: absolute;
+            top: -30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .candles {
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            top: -50px;
+            width: 100%;
+        }
+
+        .candle {
+            width: 10px;
+            height: 30px;
+            background: yellow;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .candle::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: orange;
+            border-radius: 50%;
+            position: absolute;
+            top: -6px;
+            left: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Happy Birthday, Israa! 🎉</h1>
+        <p>Click the cake to make a wish! 🕯️</p>
+        <div class="cake" id="cake">
+            <div class="frosting"></div>
+            <div class="candles">
+                <div class="candle"></div>
+                <div class="candle"></div>
+                <div class="candle"></div>
+            </div>
+        </div>
+        <p id="wish-message"></p>
+    </div>
+
+    <script>
+        const cake = document.getElementById('cake');
+        const message = document.getElementById('wish-message');
+
+        cake.addEventListener('click', () => {
+            message.textContent = "🎉 Make a wish, Israa! Happy Birthday! 🎉";
+            createFirework();
+        });
+
+        function createFirework() {
+            const colors = ['#ff0', '#0ff', '#f0f', '#fff', '#f00', '#0f0', '#00f'];
+            for(let i=0; i<30; i++){
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '5px';
+                particle.style.height = '5px';
+                particle.style.background = colors[Math.floor(Math.random()*colors.length)];
+                particle.style.borderRadius = '50%';
+                particle.style.left = `${Math.random()*window.innerWidth}px`;
+                particle.style.top = `${Math.random()*window.innerHeight}px`;
+                particle.style.opacity = 1;
+                particle.style.transition = 'all 1s ease-out';
+                document.body.appendChild(particle);
+                setTimeout(() => {
+                    particle.style.top = `${Math.random()*window.innerHeight - 200}px`;
+                    particle.style.opacity = 0;
+                }, 50);
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
